@@ -37,7 +37,8 @@ Remarks:
 * However, before you can use this functionality, you need to clone a separate repo to your machine and run a Python Flask app. Ask us for GitHub access and follow the next step: "Set Up for CLIP-DallE-SketchFab-001 Flask App".
 
   The Flask app can also help you generate entire scenes, such as "farm with 2 cows and a horse" and engage a GPT-depth inferencer. A future release should contain a scene that employs this ability.
-
+  
+![1689793997354](readme_img/1689793997354.png)
 
 ## Set Up for CLIP-DallE-SketchFab-001 Flask App
 
