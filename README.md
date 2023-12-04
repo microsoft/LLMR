@@ -80,7 +80,7 @@ flask run
 
 In your terminal, you should see something like the image below. The app is now running on your local server and you can go back to Unity and enable the use of this app.
 
-![1689794272556](image/README/1689794272556.png)
+![1689794272556](readme_img/1689794272556.png)
 
 If you encounter any import or dependency issues, you can run `python app.py` to see the error messages. Install any missing dependencies as needed.
 
