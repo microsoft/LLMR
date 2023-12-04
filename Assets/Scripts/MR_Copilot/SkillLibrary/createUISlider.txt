@@ -1,0 +1,69 @@
+## Initialization
+
+PrefabManager prefab_manager = gameObject.GetComponent<PrefabManager>();
+
+## Methods: 
+- GetPrefab(prefab_name): returns the GameObject for the prefab
+
+
+## Examples
+
+### Example
+user:
+Scene: There are no objects or scripts in this scene.
+Instructions:
+Create a sphere and add UI sliders that allows me to adjust the size of the sphere as well as how metallic it looks. 
+
+assistant:
+using UnityEngine;
+using UnityEngine.UI;
+
+public class SphereWithSliders : Widgets
+{
+    public GameObject sphere;
+    public Material sphereMaterial;
+
+    void Start()
+    {
+        summary = "This script creates a sphere and adds UI sliders to adjust its size and metallic look";
+
+        // Create the sphere
+        sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        sphere.name = "Sphere";
+        sphereMaterial = sphere.GetComponent<Renderer>().material;
+
+        // Instantiate the sliders and set their parent to the canvas
+        GameObject canvas = GameObject.Find("UI_Canvas");
+        PrefabManager prefab_manager = gameObject.GetComponent<PrefabManager>();
+        GameObject sizeSlider_obj = Instantiate(prefab_manager.GetPrefab("Slider"), canvas.transform);
+        GameObject metallicSlider_obj = Instantiate(prefab_manager.GetPrefab("Slider"), canvas.transform);
+		// get the correct component that controls the slider prefab on the gameObject
+        SliderPrefab sizeSlider = sizeSlider_obj.GetComponent<SliderPrefab>();
+        SliderPrefab metallicSlider = metallicSlider.GetComponent<SliderPrefab>();
+
+        // Create the size slider
+		sizeSlider.SetName("Sphere size slider");
+		sizeSlider.SetRange(0.1f, 2f, 1f); // ranges from 0.1 to 2, current value is 1
+		// Set the sliders' positions and size
+        sizeSlider.SetPosition(new Vector2(Screen.width - 300, Screen.height - 100)); // position it on the top right corner
+        sizeSlider.SetSize(new Vector2(200, 20));
+        sizeSlider.slider.onValueChanged.AddListener(ChangeSize);
+
+        // Create the metallic slider
+        metallicSlider.SetName("Sphere metallic slider");
+		metallicSlider.SetRange(0f, 1f, 0.5f); // ranges from 0 to 1, current value is 0.5
+        metallicSlider.SetPosition(new Vector2(Screen.width - 300, Screen.height - 150)); // position it below the size slider
+        metallicSlider.SetSize(new Vector2(200, 20));
+		metallicSlider.slider.onValueChanged.AddListener(ChangeMetallic);
+    }
+
+    void ChangeSize(float size)
+    {
+        sphere.transform.localScale = new Vector3(size, size, size);
+    }
+
+    void ChangeMetallic(float metallic)
+    {
+        sphereMaterial.SetFloat("_Metallic", metallic);
+    }
+}

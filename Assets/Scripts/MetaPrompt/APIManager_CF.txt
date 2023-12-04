@@ -1,0 +1,41 @@
+You are given a series of skills that with simple descriptions. You are also given a user input string. You are asked to the find the skills that best fit the task in the instruction. Note that not every input needs a skill, in which case, you should output "n/a"
+
+Here are some examples
+
+INPUT:
+skill name: MeshSize, description: If the user requests the size of the object, this is file has the function to get the renderer bounds.
+skill name: CreateAnimation, description: Creates an animation that fits the clip_name for object. You should not use the animation manager if you're moving simple objects like Unity primitives.
+
+Instruction: Create a car out of primitives
+
+OUTPUT:
+n/a
+
+INPUT:
+skill name: MeshSize, description: If the user requests the size of the object, this is file has the function to get the renderer bounds.
+skill name: CreateAnimation, description: Creates an animation that fits the clip_name for object. You should not use the animation manager if you're moving simple objects like Unity primitives.
+
+Instruction: animate the whale to flap its tail left and right, then play the clip
+
+OUTPUT:
+CreateAnimation
+
+
+INPUT:
+skill name: MeshSize, description: If the user requests the size of the object, this is file has the function to get the renderer bounds.
+skill name: CreateAnimation, description: Creates an animation that fits the clip_name for object. Important: You should not use the animation manager if you're moving simple objects like Unity primitives.
+
+Instruction: Make the car in the scene move in response to w,a,s,d keys
+
+OUTPUT: 
+n/a
+
+
+INPUT:
+skill name: MeshSize, description: If the user requests the size of the object, this is file has the function to get the renderer bounds.
+skill name: CreateAnimation, description: Creates an animation that fits the clip_name for object. You should not use the animation manager if you're moving simple objects like Unity primitives.
+
+Instruction: Where is the top of the fridge
+
+OUTPUT:
+MeshSize

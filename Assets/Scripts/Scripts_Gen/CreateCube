@@ -1,0 +1,11 @@
+using UnityEngine;
+public class CreateCube : Widgets
+{
+    public GameObject cube;
+    void Start()
+    {
+        summary = "This script creates a cube in the scene.";
+        cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        cube.name = "Cube";
+    }
+}

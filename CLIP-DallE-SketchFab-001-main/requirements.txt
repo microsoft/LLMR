@@ -1,0 +1,6 @@
+Flask==2.0.2
+gunicorn
+openai==0.27.8
+torch
+torchvision
+openai-clip

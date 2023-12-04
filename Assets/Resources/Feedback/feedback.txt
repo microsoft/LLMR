@@ -1,0 +1,1 @@
+New user input: Please revise the code to accurately form a peace sign with the humanoid's hand. Ensure that the index and middle fingers are extended straight and their Y position values increase, while the thumb and pinky are bent inwards with unchanged Y position values and without rotation. The thumb should not move downwards or rotate.

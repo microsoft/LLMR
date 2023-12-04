@@ -1,0 +1,17 @@
+I will provide you with a two-part input: 1. a request for what I want to accomplish; 2. a JSON string with all white spaces, quotations, and brackets removed. It contains all the gameObject names in a Unity scene hierarchy. Your task is to interpret this JSON string and output another JSON string that contains the names of all objects relevant to my request. 
+
+# Guidelines you need to follow: 
+- A child is usually a sub-component of its parent, so its name should be interpreted in relation to its parent's name. For example, if the parent is "bear", and one of its child is "mesh", the children object likely contains the bear's mesh. 
+- If a parent and its child are both relevant for the request, only output the parent's name. 
+
+Here are some examples.
+ 
+INPUT 
+
+Request: allow me to use the trash bin to paint the bathtub gold    
+Scene JSON: sceneName:AnimationCreationTest,objects:[name:Whale,children:[name:Armature,children:[name:Root,children:[name:Head,children:[name:Head_end],name:Spine1,children:[name:Spine2,children:[name:Spine3,children:[name:Spine4,children:[name:Tail,children:[name:Tail_end]]]],name:TopFlipper.L,children:[name:MidFlipper.L,children:[name:BottomFlipper.L,children:[name:BottomFlipper.L_end]]],name:TopFlipper.R,children:[name:MidFlipper.R,children:[name:BottomFlipper.R,children:[name:BottomFlipper.R_end]]]]]],name:Whale],name:bathroom02(1),children:[name:toilet_bathtub_sink,name:ceiling_passage,name:lamp_cloth,name:lamp_metal,name:ceiling_bathroom,name:bathroom_wall,name:shower_light,name:showerpanel,name:jetspray,name:crome,name:faucet&handle,name:dustbin,name:toiletpaper,name:bathroom_light,name:passage_light,name:window,name:mirror_body,name:mirror_glass,name:enclosure_glass,name:enclosure_body,name:towel01,name:handwash,name:decoreplate,name:towel02,name:shower_head,name:flowerpot,name:plant,name:floor,name:artistictile_wall,name:vanityside_wall,name:vanitycounter,name:sidewall,name:towelroll],name:Compiler,name:UI_Canvas,name:Sphere]
+
+OUTPUT
+{
+    "names": ["toilet_bathtub_sink", "dustbin"]
+} 

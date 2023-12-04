@@ -1,0 +1,126 @@
+## Initialization
+
+SketchfabLoader loader = gameObject.GetComponent<SketchfabLoader>();.
+
+## Methods: 
+- LoadBatchWithCaching(List<ModelData> models): this method takes a list of ModelData objects, which contain the label, position, and scale of each model to be loaded. It first checks if the models already exist locally, and if so, it loads them from the cache. Otherwise, it downloads them from Sketchfab and saves them to the cache. It then places the models in the scene according to their position and scale values.
+  - Note: you should always create a list of ModelData even if it's a single object, like List<ModelData> models = new List<ModelData>() {
+		new ModelData("", "bowl", new Vector3(1,0,0), 1f)}
+- Utils.AddPhysics(model, mass): this method takes a GameObject and a mass value, and adds a Rigidbody and a MeshCollider to the object and all its children. It sets the mass of the Rigidbody to the given value, and makes the MeshCollider convex. This allows the object to interact with physics in the scene.
+- MoveNextTo(GameObject model1, GameObject model2, Vector3 placement): this method takes two GameObjects and a Vector3, and places model2 on or next to model1, in the direction of the placement vector. It makes sure that the models do not overlap, and if the placement vector is inside the bounds of model1, it pushes model2 out to the closest point on the surface. It also adjusts the rotation of model2 to face model1. If model1 is on the floor and the placement vector has no upward component, it also places model2 on the floor.
+
+## Toggles 
+- use_DALLE_CLIP_refinement: this boolean determines whether to use the DALLE-CLIP model to refine the search results from Sketchfab and find the closest match to the label. If true, it uses the Find3DModelsSingle component to perform the refinement. If false, it loads the models randomly from the search results.
+- save_models_to_nontemp_folder: this boolean determines whether to save the downloaded models to a persistent data path or a temporary cache path. If true, it saves the models to Application.persistentDataPath, which is a folder that persists between sessions. If false, it saves the models to Application.temporaryCachePath, which is a folder that may be deleted by the system at any time.
+
+## Notes
+- Only use this SketchfabLoader when loading objects that are not primitives. 
+- Remember to include "using System.Collections.Generic;" if you want to use List.
+- You must wait for this method to finish executing using yield return statements before you can do anything with the objects. 
+- Each model data in the list has the form "new ModelData("", object_name, reference_object_name, position, scale)". If reference_object_name is not empty, the position of the object is set relative to the reference object.
+- You should scale each object according to their real-world sizes. A scale of 1 in Unity corresponds to a size of 1 meter in reality.
+
+
+## Examples
+
+## Example 1:
+user: 
+Scene: there is nothing in the scene. 
+
+Instruction: Create a scene with a desk, red chair, and a siamese cat, place cat next to desk
+assistant:
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CreateDeskChairCat : Widgets
+{
+    public GameObject desk;
+    public GameObject chair;
+    public GameObject cat;
+    public float speed = 1f;
+    public float maxChangeTime = 3f;
+
+    private Vector3 targetPosition;
+    private float changeTime;
+    bool finished_loading = false;
+
+    IEnumerator Start()
+    {
+        summary = "This script creates a scene with a desk, chair, cat and places cat next to desk.";
+
+        // Load the cat model
+        SketchfabLoader loader = gameObject.GetComponent<SketchfabLoader>();
+
+        // create a list of models with labels, positions, and scales
+        List<ModelData> models = new List<ModelData>() {
+            new ModelData("", "desk", "", new Vector3(1,0,0), 1f), // the desk is located at (1,0,0) and has a scale of 1
+            new ModelData("", "red_chair", "", new Vector3(2, 0, 0), 0.5f), // the red chair is located at (2,0,0) and has a scale of 0.5
+            new ModelData("", "siamese_cat", "desk", new Vector3(0,1,0), 0.2f) // the siamese cat is located at (0,1,0) relative to the desk and has a scale of 0.2
+        };
+      
+        yield return loader.LoadBatchWithCachingCoroutine(models);
+
+    }   
+}
+
+## Example 2:
+
+user: 
+Scene: there is nothing in the scene. 
+
+Instruction: Create a turtle from sketchfab and make it move randomly 
+
+assistant:
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class RandomlyMovingTurtle : Widgets
+{
+    public GameObject turtle;
+    public float speed = 1f;
+    public float maxChangeTime = 3f;
+
+    private Vector3 targetPosition;
+    private float changeTime;
+    bool finished_loading = false;
+
+    IEnumerator Start()
+    {
+        summary = "This script creates a turtle that moves randomly.";
+
+        // Load the cat model
+        SketchfabLoader loader = gameObject.GetComponent<SketchfabLoader>();
+        List<ModelData> models = new List<ModelData>() { new ModelData("", "turtle", "", Vector3.zero, 0.2f) };
+        yield return loader.LoadBatchWithCachingCoroutine(models);
+
+        // Get the cat object
+        finished_loading = true;
+        turtle = GameObject.Find("turtle");
+
+        // Initialize the target position and change time
+        targetPosition = cat.transform.position;
+        changeTime = maxChangeTime;
+    }
+
+    void Update()
+    {
+        while (!finished_loading) // must wait until the turtle is loaded to do anything
+        {
+            return;
+        }
+        // Move the cat towards the target position
+        turtle.transform.position = Vector3.MoveTowards(cat.transform.position, targetPosition, speed * Time.deltaTime);
+
+        // Decrease the change time
+        changeTime -= Time.deltaTime;
+
+        // If the change time is less than zero, choose a new target position
+        if (changeTime < 0)
+        {
+            targetPosition = new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f));
+            changeTime = maxChangeTime;
+        }
+    }
+}

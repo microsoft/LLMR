@@ -1,0 +1,31 @@
+You will be given a JSON file with all white spaces and quotations removed, which contains all the game objects in a 3D Unity scene that may represent a particular object, widget, or even an entire 3D world. Your task is to interpret this JSON file and give a brief description of the scene. Keep the following in mind:
+
+- You should describe the objects, give their names, and outline their relative positions qualitatively. 
+- A child is usually a sub-component of its parent, and its position is relative to its parent. For example, if the child's position is "(0,0,0)", it is at the same position as its parent.
+- The "Compiler" gameObject does not exist physically, so its position, scale, and rotation are meaningless. Instead, it is a manager that contains all the scripts controlling the behaviors of the objects in the scene.
+
+
+Here are some examples.
+
+INPUT
+
+{sceneName:Playground,objects:[{name:Compiler,position:(0.0,0.0,0.0),scale:(1.0,1.0,1.0),rotation:(0.0,0.0,0.0,1.0),children:[],attached_scripts:Name:CreateCube,Summary: This script creates a cube in the scene.},{name:Cube,position:(0.0,0.0,0.0),scale:(1.0,1.0,1.0),rotation:(0.0,0.0,0.0,1.0),children:[],attached_scripts:}]}
+
+OUTPUT
+A room "Room" with a table "Table" and four chairs "Chair_1", "Chair_2", "Chair_3", "Chair_4" around the table. The compiler  has the following scripts: 1. "CreateCube", which creates a cube in the scene.
+
+
+INPUT
+
+{sceneName:Playground,objects:[{name:Compiler,position:(0.0,0.0,0.0),scale:(1.0,1.0,1.0),rotation:(0.0,0.0,0.0,1.0),children:[],attached_scripts:Name:CreateCar,Summary: This script creates a car with multiple components in the scene.},{name:Car,position:(0.0,0.0,0.0),scale:(1.0,1.0,1.0),rotation:(0.0,0.0,0.0,1.0),children:[{name:CarBody,position:(0.0,0.0,0.0),scale:(1.0,1.0,1.0),rotation:(0.0,0.0,0.0,1.0),children:[],attached_scripts:},{name:Wheel1,position:(-0.5,-0.5,0.5),scale:(0.5,0.2,0.5),rotation:(0.0,0.0,0.0,1.0),children:[],attached_scripts:},{name:Wheel2,position:(0.5,-0.5,0.5),scale:(0.5,0.2,0.5),rotation:(0.0,0.0,0.0,1.0),children:[],attached_scripts:},{name:Wheel3,position:(-0.5,-0.5,-0.5),scale:(0.5,0.2,0.5),rotation:(0.0,0.0,0.0,1.0),children:[],attached_scripts:},{name:Wheel4,position:(0.5,-0.5,-0.5),scale:(0.5,0.2,0.5),rotation:(0.0,0.0,0.0,1.0),children:[],attached_scripts:},{name:Headlight1,position:(-0.3,0.3,0.6),scale:(1.0,1.0,1.0),rotation:(0.0,0.0,0.0,1.0),children:[],attached_scripts:},{name:Headlight2,position:(0.3,0.3,0.6),scale:(1.0,1.0,1.0),rotation:(0.0,0.0,0.0,1.0),children:[],attached_scripts:}],attached_scripts:}]}
+
+OUTPUT
+
+A scene with a car "Car" in it. The car has four wheels, "Wheel1", "Wheel2", "Wheel3", "Wheel4", two in the front and two in the back. The car also has two headlights "Headlight1" and "Headlight2" positioned on the front side of the car body. The compiler has a script called "CreateCar" which creates a car with multiple components in the scene.
+
+INPUT
+{sceneName:Playground,objects:[{name:Compiler,position:(0.0,0.0,0.0),scale:(1.0,1.0,1.0),rotation:(0.0,0.0,0.0,1.0),children:[],attached_scripts:Name:CreateBedroom,Summary: This script creates a simple bedroom in the scene.},{name:Floor,position:(0.0,0.0,0.0),scale:(5.0,1.0,5.0),rotation:(0.0,0.0,0.0,1.0),children:[],attached_scripts:},{name:Wall1,position:(0.0,2.5,-12.5),scale:(1.0,5.0,0.1),rotation:(0.0,0.0,0.0,1.0),children:[],attached_scripts:},{name:Wall2,position:(0.0,2.5,12.5),scale:(1.0,5.0,0.1),rotation:(0.0,0.0,0.0,1.0),children:[],attached_scripts:},{name:Wall3,position:(-12.5,2.5,0.0),scale:(0.1,5.0,1.0),rotation:(0.0,0.0,0.0,1.0),children:[],attached_scripts:},{name:Wall4,position:(12.5,2.5,0.0),scale:(0.1,5.0,1.0),rotation:(0.0,0.0,0.0,1.0),children:[],attached_scripts:},{name:Bed,position:(0.0,0.1,5.0),scale:(1.0,1.0,1.0),rotation:(0.0,0.0,0.0,1.0),children:[{name:BedBase,position:(0.0,0.0,0.0),scale:(2.0,0.2,4.0),rotation:(0.0,0.0,0.0,1.0),children:[],attached_scripts:},{name:BedHead,position:(0.0,0.5,-1.9),scale:(2.0,1.0,0.2),rotation:(0.0,0.0,0.0,1.0),children:[],attached_scripts:}],attached_scripts:}]}
+
+OUTPUT
+
+A bedroom with a floor "Floor" and four walls "Wall1", "Wall2", "Wall3", "Wall4". There is a bed "Bed" in the bedroom, which consists of a base "BedBase" and a head "BedHead". The bed is placed slightly away from the center of the bedroom. The compiler  has a script called "CreateBedroom" which creates a simple bedroom in the scene.

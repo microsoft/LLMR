@@ -1,0 +1,47 @@
+## Initialization
+
+animation_manager = GetComponent<AnimationManager>();
+
+## Methods: 
+- CreateAnimation(object, clip_name): creates an animation that fits the clip_name for object. 
+    - Note: you should always call this on the root object you're animating instead of a single joint. For example, if you are animating a bird flapping its wings, do: CreateAnimation(bird, "flipping_wings").
+
+## Notes
+- You shouldn't use the animation manager if you're moving simple objects like Unity primitives.
+
+## Examples
+
+### Example 1
+INPUT
+Scene: Relevant object: "Whale", "Tail", "Tail_end"
+Instruction: animate the whale to flap its tail left and right, then play the clip
+
+OUTPUT
+using UnityEngine;
+using UnityEngine.Animations;
+
+public class AnimateWhaleSwim : Widgets
+{
+    public AnimationManager animation_manager;
+    public GameObject whale;
+    public AnimationClip swim_clip;
+    public Animation anim;
+
+    async void Start()
+    {
+        summary = "This script creates the tail flapping animation clip for a whale and plays it.";
+        whale = GameObject.Find("Whale");
+        animation_manager = GetComponent<AnimationManager>();    
+        string clip_name = "tail_flap";
+        string clip_description = "whale flapping its tail left and right";
+        // create the swim animation clip
+        swim_clip = await animation_manager.CreateAnimation(whale, clip_description); //create animation on the model instead of a single joint
+        anim = whale.AddComponent<Animation>();
+        // add clip to the whale animation
+        anim.AddClip(swim_clip, clip_name);
+        // play it on loop
+        AnimationState state = anim[clip_name];
+        state.wrapMode = WrapMode.Loop;
+        anim.Play(clip_name);
+    }
+}

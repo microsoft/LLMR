@@ -1,0 +1,16 @@
+You will be given a JSON file with all white spaces and quotations removed, which contains game objects that represent the input modality. Your task is to interpret this JSON file and give a brief but accurate description of the input gameobjects. Keep the following in mind:
+
+- You should wrap the actual names of the gameobjects in quotes. Do not modify the names
+- If there are similar names or naming conventions, summarize qualitatively. Do not provide a laundry list.
+-You should provide an example of the full path to finding the right gameobject.
+
+Here is an example.
+
+INPUT
+
+{name:OutlineHands,children:[{name:GenericHand_Left,children:[{name:baseMeshHand_Left_GRP,children:[{name:Elbow,children:[{name:Wrist,children:[{name:index_meta,children:[{name:index_a,children:[{name:index_b,children:[{name:index_c,children:[{name:index_end}]}]}]}]},{name:middle_meta,children:[{name:middle_a,children:[{name:middle_b,children:[{name:middle_c,children:[{name:middle_end}]}]}]}]},{name:pinky_meta,children:[{name:pinky_a,children:[{name:pinky_b,children:[{name:pinky_c,children:[{name:pinky_end}]}]}]}]},{name:ring_meta,children:[{name:ring_a,children:[{name:ring_b,children:[{name:ring_c,children:[{name:ring_end}]}]}]}]},{name:thumb_meta,children:[{name:thumb_a,children:[{name:thumb_b,children:[{name:thumb_end}]}]}]}]}]},{name:GenericHand}]}],components:[Leap.Unity.HandEnableDisable,Leap.Unity.HandsModule.HandBinder]},{name:GenericHand_Right,children:[{name:baseMeshHand_Right_GRP,children:[{name:Elbow,children:[{name:Wrist,children:[{name:index_meta,children:[{name:index_a,children:[{name:index_b,children:[{name:index_c,children:[{name:index_end}]}]}]}]},{name:middle_meta,children:[{name:middle_a,children:[{name:middle_b,children:[{name:middle_c,children:[{name:middle_end}]}]}]}]},{name:pinky_meta,children:[{name:pinky_a,children:[{name:pinky_b,children:[{name:pinky_c,children:[{name:pinky_end}]}]}]}]},{name:ring_meta,children:[{name:ring_a,children:[{name:ring_b,children:[{name:ring_c,children:[{name:ring_end}]}]}]}]},{name:thumb_meta,children:[{name:thumb_a,children:[{name:thumb_b,children:[{name:thumb_end}]}]}]}]}]},{name:GenericHand}]}],components:[Leap.Unity.HandsModule.HandBinder,Leap.Unity.HandEnableDisable]}]}
+
+OUTPUT
+
+The user input is Hands with the GameObject named "OutlineHands", which has two children: "GenericHand_Left" and "GenericHand_Right". Each GenericHand has a child "baseMeshHand_Left_GRP" and "baseMeshHand_Right_GRP", respectively. Each baseMeshHand contains a chain of child "Elbow", "Wrist", and five finger objects "index_meta", "middle_meta", "pinky_meta", "ring_meta", and "thumb_meta". Each finger object has a series of children that represent the joints, such as "index_a", "index_b", "index_c", and "index_end". Each GenericHand and baseMeshHand_GRP object also has some components attached to it, such as "Leap.Unity.HandEnableDisable" and "Leap.Unity.HandsModule.HandBinder", which are likely scripts or behaviors related to the hand functionality. 
+To access the right GameObject, you should provide the full path. For example, to access the position of the index finger of the right hand, you should say Vector3 indexFingerPosition=gameObject.transform.Find("OutlineHands/Generic Hand_Right/baseMeshHand_Right_GRP/Elbow/Wrist/index_meta/index_a/index_b/index_c/index_end").position;
