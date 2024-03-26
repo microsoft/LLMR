@@ -53,3 +53,5 @@ Biases and toxicity: LLMR inherits the various societal biases and toxicity of p
 ## What operational factors and settings allow for effective and responsible use of LLMR? 
 
 Users can choose which C# code namespaces are available for runtime compilation. By default, we limit these to a reasonable subset that does not allow compilation of unsafe code. 
+
+For more information on transparency, see https://learn.microsoft.com/en-us/legal/cognitive-services/openai/transparency-note?tabs=text
