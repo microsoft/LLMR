@@ -1,0 +1,41 @@
+Create a car with a body, wheels, and doors; put four seats on the car; put a front wind shield, a ceiling, and a back cover on the car; put a spare tire on the back cover; program the car to be drivable with w,a,s,d
+Make a torch out of primitives; Add a light to the torch and allow me to turn it on and off by clicking on the torch
+Create water effect in the scene; create a burning cube that I can pick up; make it so that if I place the cube near the water, it stops burning
+Create a cat that will attempt to catch any mouse it sees; create a mouse that moves randomly
+Create a cube; create a UI slider that allows me to adjust the size of the cube
+Create a sphere that serves as the nucleus of a hydrogen atom; create an electron density cloud that behaves stochastically
+Make a physically realistic car that I can drive with w,a,s,d and jump with space; change the gravity to be closer to moon so that the car jumps much higher
+Create a red cube and a green cube; change their colors to be more accessible for a red-green colorblind person
+Create a trees out of primitives; turn my mouse into a flamethrower that can emit fire when I leftclick; make the cubes catch on fire if I use the flamethrower on them
+Create two cubes that I can move around with my mouse; let cubes glue onto each other when they collide
+create a cube; create a lever out of primitives; add appropriate joints and constraints to the lever; Use the lever to control the size of the cube
+create a rotating cube; change the rotation speed to be slower
+create an apple and a whale; duplicate the apple to have different sizes and with unique gameobject names; remove all apples that are smaller in size than the whale
+create a room out of primitives with walls and floor only; shrink the size of the room by half and put the walls back together
+create a sphere; add a rigidbody component to the sphere; add a script to the sphere that makes it bounce when it hits the floor
+create a camera; add a script to the camera that allows the user to move it with the arrow keys; add a UI text element that shows the current position of the camera
+create a cylinder; add a mesh collider component to the cylinder; add a script to the cylinder that makes it spin when the user clicks on it
+create a plane; add a mesh renderer component to the plane; add a script to the plane that changes its color randomly every second
+create a capsule; add a trigger collider component to the capsule; add a script to the capsule that destroys it when the user enters the trigger
+create a light; add a script to the light that makes it flicker on and off; add a UI slider element that controls the intensity of the light
+create a cube; add a script to the cube that makes it follow the mouse cursor; add a UI button element that toggles the cube's visibility
+create a sphere; add a particle system component to the sphere; add a script to the sphere that makes it emit sparks when the user presses the spacebar
+create a cylinder; add a mesh filter component to the cylinder; add a script to the cylinder that makes it deform when the user scrolls the mouse wheel
+create a plane; add a texture to the plane; add a script to the plane that makes it scroll the texture horizontally
+create a capsule; add a sound component to the capsule; add a script to the capsule that makes it play a sound when the user collides with it
+create a light; add a script to the light that makes it rotate around the origin; add a UI dropdown element that lets the user choose the color of the light
+create a cube; add a script to the cube that makes it move along a predefined path; add a UI toggle element that lets the user pause and resume the cube's movement
+create a sphere; add a script to the sphere that makes it grow and shrink in size; add a UI input field element that lets the user enter the maximum and minimum size of the sphere
+create a cylinder; add a script to the cylinder that makes it explode into smaller pieces when the user hits it with a raycast; add a UI text element that shows the number of pieces remaining
+Move the camera in slow motion towards the plant and the stop; turn off all the lights, create a spotlight that points at the plant
+Make the bathtub float in space; place a big rabbit under the bathtub; make the sink pour water; make the rabbit run when water touches it
+Move the dustbin close to the sink; clone the toilet-paper 10 times; make all toilet papers move around randomly; make it look like there are infinite toilet papers raining
+Make the towels roll back and forth; make the towels jump if they are clicked on; clone the plants 10 times; move all plants to random new positions; make it seem like the plants are watering each other
+Create a new camera and name it Camera2; place a humanoid from sketchfab in front of Camera2; add the view of Camera2 to be shown on the mirror; make the humanoid wave when the mouse is over the mirror
+Create a new scene and name it Forest; add a terrain and paint it with grass and trees; add a skybox with clouds and sun; add a first-person controller and enable movement and jumping; add a sound of birds chirping
+Create a new scene and name it Kitchen; add a table, a chair, a fridge, a stove, and a sink; add some food items on the table and in the fridge; add a script that allows the user to pick up and drop items; add a script that allows the user to open and close the fridge and the stove
+Create a new scene and name it Museum; add a wall and a floor; add some paintings and sculptures from sketchfab; add a script that allows the user to zoom in and out of the artworks; add a script that displays the name and the author of the artwork when the user clicks on it
+Create a new scene and name it Garden; add a fountain, a bench, and some flowers; add a script that makes the fountain spray water; add a script that makes the flowers grow and shrink when the user hovers over them; add a script that makes the bench rotate when the user sits on it
+Create a new scene and name it Space; add a sphere and a cube; add a script that makes the sphere look like a planet with a texture and a rotation; add a script that makes the cube look like a spaceship with a texture and a movement; add a script that allows the user to control the spaceship with the arrow keys
+Create a new scene and name it Classroom; add a blackboard, a desk, a chair, and a chalk; add a script that allows the user to write on the blackboard with the chalk; add a script that allows the user to erase the blackboard with the mouse; add a script that makes the chalk break if the user writes too fast
+Create a new scene and name it Aquarium; add a glass tank, some water, and some fish; add a script that makes the water look realistic with reflections and refractions; add a script that makes the fish swim around randomly; add a script that makes the fish follow the mouse if the user clicks on the tank

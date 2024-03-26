@@ -20,7 +20,7 @@ public class Planner : ChatBot
     {
         var api = new OpenAIClient();
 
-        ChatHistory.Add(new ChatPrompt("user", input_str));
+        ChatHistory.Add(new Message(Role.User, input_str));
         history += "user: \n" + input_str + "\n\n";
 
         var chatRequest = new ChatRequest(ChatHistory, Model.GPT4, temperature: Temperature, maxTokens: MaxTokens);
@@ -29,12 +29,13 @@ public class Planner : ChatBot
         output_TMP.text = "";
         await api.ChatEndpoint.StreamCompletionAsync(chatRequest, result =>
         {
-            output_TMP.text += result.FirstChoice.ToString(); // display responses on the output window
-            fullResult += result.FirstChoice.ToString();
-            history += result.FirstChoice.ToString();
+
+            output_TMP.text += result.FirstChoice.Message.Content.ToString(); // display responses on the output window
+            fullResult += result.FirstChoice.Message.Content.ToString();
+            history += result.FirstChoice.Message.Content.ToString();
         });
 
-        ChatHistory.Add(new ChatPrompt("assistant", fullResult));
+        ChatHistory.Add(new Message(Role.Assistant, fullResult));
         history += "\n\n";
 
         // processing at the end of conversation
@@ -58,10 +59,10 @@ public class Planner : ChatBot
         else
         {
             // take the metaprompt and the previously finalized plans
-            List<ChatPrompt> temp = ChatHistory.Take(num_plans_finalized).ToList();
+            List<Message> temp = ChatHistory.Take(num_plans_finalized).ToList();
             // take the newly finalized plan
             string preamble = "Here's a plan we previously discussed: \n";
-            temp.Add(new ChatPrompt("assistant", preamble + newest_plan));
+            temp.Add(new Message(Role.Assistant, preamble + newest_plan));
             // reset the chat memory
             ChatHistory = temp;
         }

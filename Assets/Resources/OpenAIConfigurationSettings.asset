@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: OpenAIConfigurationSettings
   m_EditorClassIdentifier: 
   apiKey: 
-  organizationId: 
-  useAzureOpenAI: 0
+  organizationId: org-Npj7Rs08jXX4MAwbfTJxtDkB
+  useAzureOpenAI: 1
   proxyDomain: 
   resourceName: 
   deploymentId: 
-  apiVersion: v1
+  useAzureActiveDirectory: 0
+  apiVersion: 2023-07-01-preview

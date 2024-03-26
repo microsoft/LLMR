@@ -10,6 +10,7 @@ public class ChatCompilationManager : MonoBehaviour
 {
 
     public Builder builder;
+    public ContentFilter filter;
     public GameObject roslynCompiler;
     public Inspector inspector;
     public Debugger debugger;
@@ -17,6 +18,7 @@ public class ChatCompilationManager : MonoBehaviour
     public SceneParser scene_parser;
     public TextMeshPro refinedInput;
     private bool refined;
+    public bool use_filter;
     public List<string> error_messages = new List<string>();
 
     // for chat stream interruption
@@ -61,6 +63,10 @@ public class ChatCompilationManager : MonoBehaviour
 
     async void Run_with_Inspector_and_Refiner()
     {
+        if (use_filter)
+        {
+            await RunContentFilter();
+        }
         // get user request
         string user_input = builder.input_TMP.text;
         // analyze scene
@@ -85,6 +91,10 @@ public class ChatCompilationManager : MonoBehaviour
     {
         if (!refined) //otherwise assume this is done by the Refiner
         {
+            if (use_filter)
+            {
+                await RunContentFilter();
+            }
             string user_input = builder.input_TMP.text;
             refinedInput.text = user_input;
             builder.DisplayProcessingStatusText();
@@ -157,6 +167,11 @@ public class ChatCompilationManager : MonoBehaviour
 
     async void Run()
     {
+
+        if (use_filter)
+        {
+            await RunContentFilter();
+        }
         string user_request = builder.input_TMP.text;
         // tells the user that the GPT is processing 
         //builder.inputTMP.text = builder.processing_status_text;
@@ -186,6 +201,16 @@ public class ChatCompilationManager : MonoBehaviour
         //{
         //    Compile();
         //}
+    }
+
+    async Task RunContentFilter()
+    {
+        Debug.Log("Now running filter");
+
+        await filter.FilterInput();
+        builder.input_TMP.text = filter.output;
+
+
     }
 
     void Listen()

@@ -25,7 +25,7 @@ public class ChatRelationalGPT : MonoBehaviour
     [Tooltip("Frequency penalty value has to be between 0 and 2.")]
     public double FrequencyPenalty;
 
-    List<ChatPrompt> ChatHistory = new List<ChatPrompt>();
+    List<Message> ChatHistory = new List<Message>();
 
 
 
@@ -34,7 +34,7 @@ public class ChatRelationalGPT : MonoBehaviour
         stopValues.Add("/*");
         stopValues.Add("</");
 
-        ChatHistory.Add(new ChatPrompt("system", SystemContext.text));
+        ChatHistory.Add(new Message(Role.System, SystemContext.text));
 
         //Debug.Log("running test");
         //var testChat = TestChat();
@@ -58,7 +58,7 @@ public class ChatRelationalGPT : MonoBehaviour
         Debug.Log("Sending a chat request: \n" + Input.GetComponent<TextMeshPro>().text);
         var api = new OpenAIClient();
 
-        ChatHistory.Add(new ChatPrompt("user", Input.GetComponent<TextMeshPro>().text));
+        ChatHistory.Add(new Message(Role.User, Input.GetComponent<TextMeshPro>().text));
 
         History.GetComponent<TextMeshPro>().text += "user: \n" + Input.GetComponent<TextMeshPro>().text + "\n\n";
 
@@ -71,7 +71,7 @@ public class ChatRelationalGPT : MonoBehaviour
         var result = await api.ChatEndpoint.GetCompletionAsync(chatRequest);
         Debug.Log(result.FirstChoice);
         Output.GetComponent<TextMeshPro>().text = result.FirstChoice.ToString();
-        ChatHistory.Add(new ChatPrompt("assistant", result.FirstChoice));
+        ChatHistory.Add(new Message(Role.Assistant, result.FirstChoice));
 
         History.GetComponent<TextMeshPro>().text += "assistant: \n" + result.FirstChoice + "\n\n";
         Debug.Log("ChatHistory: " + ChatHistory.ToString());
@@ -82,7 +82,7 @@ public class ChatRelationalGPT : MonoBehaviour
         Debug.Log("Sending a chat request: \n" + Input.GetComponent<TextMeshPro>().text);
         var api = new OpenAIClient();
 
-        ChatHistory.Add(new ChatPrompt("user", Input.GetComponent<TextMeshPro>().text));
+        ChatHistory.Add(new Message(Role.User, Input.GetComponent<TextMeshPro>().text));
 
         History.GetComponent<TextMeshPro>().text += "user: \n" + Input.GetComponent<TextMeshPro>().text + "\n\n";
 
@@ -104,7 +104,7 @@ public class ChatRelationalGPT : MonoBehaviour
             History.GetComponent<TextMeshPro>().text += result.FirstChoice.ToString();
         });
 
-        ChatHistory.Add(new ChatPrompt("assistant", fullResult));
+        ChatHistory.Add(new Message(Role.Assistant, fullResult));
 
         History.GetComponent<TextMeshPro>().text += "\n\n";
         Debug.Log("ChatHistory: " + ChatHistory.ToString());
@@ -116,6 +116,31 @@ public class ChatRelationalGPT : MonoBehaviour
 
     }
 
-    
+    public async Task test()
+    {
+        Debug.Log("About to load api");
+        var auth = new OpenAIAuthentication("api key");
+        var api = new OpenAIClient(auth);
+        var models = await api.ModelsEndpoint.GetModelsAsync();
+
+        foreach (var model in models)
+        {
+            Debug.Log(model.ToString());
+        }
+
+    }
+
+    public async Task completionTest()
+    {
+
+        string prompt = Input.GetComponent<TextMeshPro>().text;
+
+        var auth = new OpenAIAuthentication("api key", "organization");
+        var api = new OpenAIClient(auth);
+        var result = await api.CompletionsEndpoint.CreateCompletionAsync("One Two Three One Two", temperature: 0.1, model: Model.Davinci);
+        Debug.Log(result);
+        Output.GetComponent<TextMeshPro>().text = result.ToString();
+        //History.text += "\n" + Input.GetComponent<TextMeshPro>().text + "\n" + Output.GetComponent<TextMeshPro>().text;
+    }
 
 }

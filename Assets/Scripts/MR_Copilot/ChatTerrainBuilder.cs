@@ -28,7 +28,7 @@ public class ChatTerrainBuilder : MonoBehaviour
     [Tooltip("Frequency penalty value has to be between 0 and 2.")]
     public double FrequencyPenalty;
 
-    List<ChatPrompt> ChatHistory = new List<ChatPrompt>();
+    List<Message> ChatHistory = new List<Message>();
 
 
     void Start()
@@ -36,7 +36,7 @@ public class ChatTerrainBuilder : MonoBehaviour
         stopValues.Add("/*");
         stopValues.Add("</");
 
-        ChatHistory.Add(new ChatPrompt("system", SystemContext.text));
+        ChatHistory.Add(new Message(Role.System, SystemContext.text));
 
         //cts.CancelAfter(10000);
     }
@@ -52,7 +52,7 @@ public class ChatTerrainBuilder : MonoBehaviour
         Debug.Log("Sending a chat request: \n" + input.GetComponent<TextMeshPro>().text);
         var api = new OpenAIClient();
 
-        ChatHistory.Add(new ChatPrompt("user", input.GetComponent<TextMeshPro>().text));
+        ChatHistory.Add(new Message(Role.User, input.GetComponent<TextMeshPro>().text));
 
         History.GetComponent<TextMeshPro>().text += "user: \n" + input.GetComponent<TextMeshPro>().text + "\n\n";
 
@@ -65,7 +65,7 @@ public class ChatTerrainBuilder : MonoBehaviour
         var result = await api.ChatEndpoint.GetCompletionAsync(chatRequest);
         Debug.Log(result.FirstChoice);
         Output.GetComponent<TextMeshPro>().text = result.FirstChoice.ToString();
-        ChatHistory.Add(new ChatPrompt("assistant", result.FirstChoice));
+        ChatHistory.Add(new Message(Role.Assistant, result.FirstChoice));
 
         History.GetComponent<TextMeshPro>().text += "assistant: \n" + result.FirstChoice + "\n\n";
         Debug.Log("ChatHistory: " + ChatHistory.ToString());
@@ -78,7 +78,7 @@ public class ChatTerrainBuilder : MonoBehaviour
         Debug.Log("Sending a chat request: \n" + input.GetComponent<TextMeshPro>().text);
         var api = new OpenAIClient();
 
-        ChatHistory.Add(new ChatPrompt("user", input.GetComponent<TextMeshPro>().text));
+        ChatHistory.Add(new Message(Role.User, input.GetComponent<TextMeshPro>().text));
 
         History.GetComponent<TextMeshPro>().text += "user: \n" + input.GetComponent<TextMeshPro>().text + "\n\n";
 
@@ -100,7 +100,7 @@ public class ChatTerrainBuilder : MonoBehaviour
             History.GetComponent<TextMeshPro>().text += result.FirstChoice.ToString();
         });
 
-        ChatHistory.Add(new ChatPrompt("assistant", fullResult));
+        ChatHistory.Add(new Message(Role.Assistant, fullResult));
 
         History.GetComponent<TextMeshPro>().text += "\n\n";
         Debug.Log("ChatHistory: " + ChatHistory.ToString());
@@ -114,7 +114,7 @@ public class ChatTerrainBuilder : MonoBehaviour
         Debug.Log("Sending a chat request: \n" + input.GetComponent<TextMeshPro>().text);
         var api = new OpenAIClient();
 
-        ChatHistory.Add(new ChatPrompt("user", input.GetComponent<TextMeshPro>().text));
+        ChatHistory.Add(new Message(Role.User, input.GetComponent<TextMeshPro>().text));
 
         History.GetComponent<TextMeshPro>().text += "user: \n" + input.GetComponent<TextMeshPro>().text + "\n\n";
 
@@ -141,7 +141,7 @@ public class ChatTerrainBuilder : MonoBehaviour
         token
         );
 
-        ChatHistory.Add(new ChatPrompt("assistant", fullResult));
+        ChatHistory.Add(new Message(Role.Assistant, fullResult));
         Debug.Log("ChatHistoryCount: "+ ChatHistory.Count.ToString());
 
         History.GetComponent<TextMeshPro>().text +=  "\n\n";
@@ -163,7 +163,7 @@ public class ChatTerrainBuilder : MonoBehaviour
         Debug.Log("Sending a chat request: \n");
         var api = new OpenAIClient();
 
-        ChatHistory.Add(new ChatPrompt("user", widget));
+        ChatHistory.Add(new Message(Role.User, widget));
 
         History.GetComponent<TextMeshPro>().text += "user: \n" + widget + "\n\n";
 
@@ -183,7 +183,7 @@ public class ChatTerrainBuilder : MonoBehaviour
         token
         );
 
-        ChatHistory.Add(new ChatPrompt("assistant", fullResult));
+        ChatHistory.Add(new Message(Role.Assistant, fullResult));
         Debug.Log("ChatHistoryCount: " + ChatHistory.Count.ToString());
 
         History.GetComponent<TextMeshPro>().text += "\n\n";
@@ -204,8 +204,31 @@ public class ChatTerrainBuilder : MonoBehaviour
         
     }
 
-    
+    public async Task test()
+    {
+        Debug.Log("About to load api");
+        var auth = new OpenAIAuthentication("Your API key");
+        var api = new OpenAIClient(auth);
+        var models = await api.ModelsEndpoint.GetModelsAsync();
 
-   
+        foreach (var model in models)
+        {
+            Debug.Log(model.ToString());
+        }
+
+    }
+
+    public async Task completionTest()
+    {
+
+        string prompt =  input.GetComponent<TextMeshPro>().text;
+
+        var auth = new OpenAIAuthentication("Your API key", "organization");
+        var api = new OpenAIClient(auth);
+        var result = await api.CompletionsEndpoint.CreateCompletionAsync("One Two Three One Two", temperature: 0.1, model: Model.Davinci);
+        Debug.Log(result);
+        Output.GetComponent<TextMeshPro>().text = result.ToString();
+        //History.text += "\n" + input.GetComponent<TextMeshPro>().text + "\n" + Output.GetComponent<TextMeshPro>().text;
+    }
 
 }

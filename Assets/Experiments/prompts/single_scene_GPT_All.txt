@@ -1,0 +1,150 @@
+Create a sphere on top of the bathtub
+Change the toilet's color to gold
+Make it so that when I click on the faucet, water flows out of it.
+Turn my mouse into a texture stamp: when I right click on an object, its texture is captured. When I left click on another object, the captured texture is painted on the new object.
+Modify the bathroom so that I can have nice bathing experience
+Tell me what the biggest object in the bathroom is
+Highlight the towels in the scene
+Place objects in the room to make it more relaxing
+Create a cat and put it on the floor
+Create a whale that swims around in the bathroom
+Change the color scheme of the room to be more relaxing
+Allow me to click on the shower door and open it
+Modify the trash to be twice as big
+Make water flow out of the faucet
+Create a button that lets me switch between day and night mode
+Make the bathroom light dim when I enter the shower
+Move the towel to a position right in front of me
+Create a mirror effect on the window
+Make the plant grow as time passes
+Hide the towels
+Tell me about the objects in this room
+Create a soap dispenser and a soap bar on the vanity counter
+Create a slider that lets me adjust the temperature of the water
+Make the ceiling passage lead to another room
+Create a mini game where I have to catch the towel before it falls on the floor
+Make the mirror glass shatter when I click on it
+Create a particle system that emits bubbles from the bathtub
+Make the floor slippery when wet
+Create a painting on the wall that changes every time I look at it
+Create a spider that crawls on the ceiling
+Make the toilet paper unroll when I drag it
+Create a clock on the wall that shows the current time
+Make the handwash dispense foam when I press a button
+Create a hair dryer that blows hot air when I click on it
+Make the flowerpot fall and break when I bump into it
+Create a fog effect that fills the room when I turn on the shower
+Create a rug that covers the floor
+Make the window open and close when I double click on it
+Make the plant wilt when I don't water it
+Change the color of the showerhead to red
+Modify the plants to change color every few seconds
+Fill the bathtub with water
+Create a toothbrush and place it on the counter
+Put a music player next to the plants
+Make the plants half as big
+Add a UI slider that allows me to adjust the size of the bathtub
+Create a sponge and place it on the shower panel
+Create a trash bag and place it next to the dustbin
+Create a tissue box and place it on the counter
+Remove the glass door enclosure
+create a mug inside the sink
+turn off the shower light
+throw away the handwash bottles in the trashcan
+open the shower door
+hang the towel on the bathtub
+The user represented by the “Camera” GameObject uses a wheelchair. Are there any items that are too high, too low, or too far for the use to see or touch in the room? Important: Only consider the GameObjects in the Scene description.
+How many tennis balls can fit in the room
+Create a tool that picks up the color of the object that it touches and changes the color of the object that it is dragged over
+Make the mirror reflect the image of the user
+Create a button that toggles the water flow from the shower head and the faucet
+Make the plant grow or shrink depending on the temperature of the room
+Create a slider that controls the brightness of the lamp
+Make the dustbin lid open and close
+Create a digital clock that displays the current time on the UI canvas
+Make the window glass breakable when hit by a forceful object
+Create a soap dispenser that dispenses soap when the user presses the nozzle
+Make the towel roll unroll
+Create a spray bottle that sprays water when the user squeezes the trigger
+Make the ceiling passage open and close when the user presses a hidden switch
+Create a radio that plays music from a list of preset stations on the vanity counter
+Make the flowerpot fall and shatter
+Create a hair dryer that blows hot air
+Make the toilet flush when the user presses the handle
+Create a scale that measures the weight of the user when they step on it
+Make the mirror glass foggy when the room is humid
+Create a toothbrush that cleans the user's teeth when they move it over their mouth
+Make the shower panel display the water temperature and pressure
+Create a razor that shaves the user's beard when they drag it over their face
+Make the handwash bottles refillable when the user places them under the faucet
+Create a fan that cools the room when the user turns it on
+Make the towel dry the user when they wrap it around themselves
+Create a magnifying glass that zooms in on the object that it is held over
+Make the lamp cloth catch fire when exposed to a flame
+Create a perfume bottle that sprays fragrance when the user presses the cap
+Create a sponge that absorbs water when it is dipped in the sink
+Make the floor slippery when it is wet
+Make the shower head rotate when the user twists it
+Create a hair clip that attaches to the user's hair when they click on it
+Make the mirror body rotate
+Create a toothpaste tube that squeezes out toothpaste when the user presses it
+Make the faucet and handle leak when they are damaged
+Make the window open and close when the user clicks on it
+Make the plant wilt
+Create a nail clipper that cuts the user's nails when they squeeze it
+Make the ceiling bathroom detachable when the user pulls on it
+Create a tissue box that dispenses tissues when the user taps on it
+Make the lamp metal shock the user when they touch it
+Create a rubber duck in the bathtub
+Make the mirror glass shatter when the user hits it with a hammer
+Create a loofah that exfoliates the user's skin when they scrub it
+Bring the jet spray right in front of the camera
+Move the camera in front of the shower head
+Make it seem like water comes out of the shower head
+Add 3 spotlights of red color 
+Add a picture frame on the window
+Clone the lamp and move it to new location
+Make the mirror reflect the camera view
+Make the dustbin fall over when the camera collides with it
+Change the color of the towel to blue
+Make the faucet and handle rotate when the camera clicks on them
+Add a physics material to the floor that makes it slippery
+Make the ceiling passage open and close when the camera presses a key
+Add a particle system to the flowerpot that emits butterflies
+Make the handwash dispense soap when the camera gets close to it
+Add a UI text that displays the current time on the mirror
+Make the bathroom light flicker randomly
+Add a collider to the ceiling that prevents the camera from going through it
+Make the shower panel slide up and down when the camera drags it with the mouse
+Add a sound effect to the toilet paper when the camera interacts with it
+Make the towel roll unroll when the camera pulls it
+Add a script to the lamp that makes it follow the camera
+Make the mirror glass shatter when the camera shoots a raycast at it
+Add a shader to the floor that makes it reflective
+Make the plant grow and shrink when the camera scrolls the mouse wheel
+Add a UI slider that controls the intensity of the shower light
+Make the vanity counter have a marble texture
+Make the passage light turn on and off when the camera enters and exits the bathroom
+Add a script to the dustbin that makes it collect any objects that fall into it
+Make the crome have a metallic effect
+Make the window glass break when the camera applies a force to it
+Add a script to the bathtub that makes it fill with water when the camera turns on the faucet
+Make the towel01 have a cloth physics
+Make the decoreplate spin when the camera hovers over it
+Add a script to the mirror body that makes it change its shape when the camera presses a key
+Make the enclosure glass foggy when the camera is inside the shower
+Add a script to the lamp cloth that makes it change its color when the camera clicks on it
+Make the floor have a random pattern of tiles
+Make the shower head spray steam when the camera turns on the jetspray
+Add a script to the plant that makes it sway when the camera blows into the microphone
+Make the vanity side wall have a graffiti effect
+Make the mirror glass have a crack effect when the camera hits it with an object
+Add a script to the flowerpot that makes it attract or repel the butterflies when the camera presses a key
+Make the handwash have a liquid physics
+Make the bathroom wall have a wallpaper effect
+Add a script to the towel that makes it dry the camera when it touches it
+Make the window have a rain effect
+Add a script to the shower panel that makes it change its temperature when the camera slides it
+Make the lamp metal have a rust effect
+add 3 lights to the theme and play them rhythmically
+change the wall's color to yellow

@@ -12,6 +12,8 @@ using System.IO;
 using TiktokenSharp;
 using UnityEngine.Rendering;
 using Unity.VisualScripting;
+using System.Net;
+using System;
 
 public class ChatBot : MonoBehaviour
 {
@@ -47,7 +49,7 @@ public class ChatBot : MonoBehaviour
     [Tooltip("Frequency penalty value has to be between 0 and 2.")]
     public double FrequencyPenalty;
 
-    protected List<ChatPrompt> ChatHistory = new List<ChatPrompt>();
+    protected List<Message> ChatHistory = new List<Message>();
 
     
     protected TikToken tokenizer;
@@ -70,7 +72,7 @@ public class ChatBot : MonoBehaviour
             LoadMetapromptFromFile();
         }
 
-        ChatHistory.Add(new ChatPrompt("system", metaprompt));
+        ChatHistory.Add(new Message(Role.System, metaprompt));
 
         // for counting tokens
         tokenizer = TikToken.EncodingForModel(model_name);
@@ -86,7 +88,7 @@ public class ChatBot : MonoBehaviour
         // metaprompt = File.ReadAllText(@"Assets\Scripts\MetaPrompt\" + metaprompt_file_name + ".txt").ToString();
     }
 
-    public virtual async Task SendChat()
+    public virtual async Task SendChatOld()
     {
         // in this case, the new chat will exceed the model's context length
         // manage token size so that there's enough room for a new chat
@@ -97,9 +99,9 @@ public class ChatBot : MonoBehaviour
 
         // send a chat
         OpenAIClient api = new OpenAIClient();
-        ChatHistory.Add(new ChatPrompt("user", input));
+        ChatHistory.Add(new Message(Role.User, input));
         history += "user: \n" + input + "\n\n";
-        ChatRequest chatRequest = new ChatRequest(ChatHistory, Model.GPT4, temperature: Temperature, maxTokens: MaxTokens);
+        ChatRequest chatRequest = new ChatRequest(ChatHistory, model_name, temperature: Temperature, maxTokens: MaxTokens);
         string fullResult = "";
         history += "assistant: \n";
         output = "";
@@ -112,11 +114,69 @@ public class ChatBot : MonoBehaviour
             history += result.FirstChoice.ToString();
         });
 
-        ChatHistory.Add(new ChatPrompt("assistant", fullResult));
+        ChatHistory.Add(new Message(Role.Assistant, fullResult));
         history += "\n\n";
     }
 
-    public async Task SendChatWithInput(string chat_input)
+   
+    public virtual async Task SendChat()
+    {
+        OpenAIClient api = new OpenAIClient();
+        int retryDelaySeconds = 60; // The delay in seconds before retrying the request
+        int maxRetries = 5; // Maximum number of retries
+
+        ChatHistory.Add(new Message(Role.User, input));
+        history += "user: \n" + input + "\n\n";
+        ChatRequest chatRequest = new ChatRequest(ChatHistory, model_name, temperature: Temperature, maxTokens: MaxTokens);
+        string fullResult = "";
+        history += "assistant: \n";
+        output = "";
+
+        int retries = 0;
+
+        while (retries < maxRetries)
+        {
+            try
+            {
+                // wait for the response
+                await api.ChatEndpoint.StreamCompletionAsync(chatRequest, result =>
+                {
+                    output += result.FirstChoice.ToString();
+                    fullResult += result.FirstChoice.ToString();
+                    history += result.FirstChoice.ToString();
+                });
+
+                ChatHistory.Add(new Message(Role.Assistant, fullResult));
+                history += "\n\n";
+                break; // Exit the loop if the request was successful
+            }
+            catch (Exception ex)
+            {
+                // Check if the exception message indicates a rate limit error
+                if (ex.Message.Contains("rate limit") || ex.Message.Contains("429"))
+                {
+                    // Handle rate limit exception
+                    Debug.LogWarning($"Rate limit exceeded. Retrying in {retryDelaySeconds} seconds...");
+                    await Task.Delay(retryDelaySeconds * 1000); // Convert seconds to milliseconds
+                    retries++;
+                }
+                else
+                {
+                    // Handle other exceptions
+                    Debug.LogError($"An error occurred: {ex.Message}");
+                    break; // Break out of the loop on other types of exceptions
+                }
+            }
+        }
+
+        if (retries >= maxRetries)
+        {
+            Debug.LogError("Failed to get a response from GPT-4 after several retries.");
+        }
+    }
+
+
+public async Task SendChatWithInput(string chat_input)
     {
         input = chat_input;
         await SendChat();
@@ -143,7 +203,7 @@ public class ChatBot : MonoBehaviour
     {
         int num_tokens = 0;
         // loop through all historical chats, add up their token count
-        foreach (ChatPrompt chatPrompt in ChatHistory)
+        foreach (Message chatPrompt in ChatHistory)
         {
             num_tokens += tokenizer.GetNumTokens(chatPrompt.Content);
         }
@@ -173,7 +233,7 @@ public class ChatBot : MonoBehaviour
     public void DisplayCurrentContext()
     {
         history = "";
-        foreach(ChatPrompt chatPrompt in ChatHistory)
+        foreach(Message chatPrompt in ChatHistory)
         {
             history += chatPrompt.Role + ":" + chatPrompt.Content + '\n';
         }
@@ -183,7 +243,7 @@ public class ChatBot : MonoBehaviour
     public void SaveCurrentContext(string dir)
     {
         string context = "";
-        foreach (ChatPrompt chatPrompt in ChatHistory)
+        foreach (Message chatPrompt in ChatHistory)
         {
             context += chatPrompt.Role + ":" + chatPrompt.Content + '\n';
         }
@@ -213,26 +273,26 @@ public class ChatBot : MonoBehaviour
         metaprompt = metaprompt_new;
         history = "";
         output = "";
-        ChatHistory = new List<ChatPrompt>();
+        ChatHistory = new List<Message>();
         // add back the metaprompt
-        ChatHistory.Add(new ChatPrompt("system", metaprompt));
+        ChatHistory.Add(new Message(Role.System, metaprompt));
     }
 
     public async Task ClearChatHistory()
     {
         history = "";
         output = "";
-        ChatHistory = new List<ChatPrompt>();
+        ChatHistory = new List<Message>();
         // add back the metaprompt
-        ChatHistory.Add(new ChatPrompt("system", metaprompt));
+        ChatHistory.Add(new Message(Role.System, metaprompt));
     }
 
     // clear GPT's memory, but the user can still inspect the history of all conversation that's happened.
     public async Task ClearChatMemory()
     {
-        ChatHistory = new List<ChatPrompt>();
+        ChatHistory = new List<Message>();
         // add back the metaprompt
-        ChatHistory.Add(new ChatPrompt("system", metaprompt));
+        ChatHistory.Add(new Message(Role.System, metaprompt));
     }
 
     public void ClearAllButLastChatMemory()

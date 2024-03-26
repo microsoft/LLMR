@@ -38,6 +38,7 @@ namespace TiktokenSharp.Services
                                                             { "gpt-4", "cl100k_base" },
                                                             { "gpt-3.5-turbo", "cl100k_base" },
                                                             { "gpt-3.5-turbo-16k", "cl100k_base" },
+                                                            { "gpt-35-turbo-16k", "cl100k_base" },
 
                                                             // text
                                                             { "text-davinci-003", "p50k_base" },
