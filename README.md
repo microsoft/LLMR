@@ -3,7 +3,7 @@
 
 
 ## Introduction
-This repo contains the code described in [LLMR](https://arxiv.org/abs/2309.12276v1), implementing the Large Language Model for Mixed Reality framework.
+This repo contains the code described in [LLMR](https://arxiv.org/abs/2309.12276v3), implementing the Large Language Model for Mixed Reality framework.
 
 This package serves as a prototype for "Speaking the world into existence", which allows the real time creation of objects, tools, and scenes with visual, behavioral, and interactive elements through natural language. Our framework combines prompt-based generation with Unity to enable spontaneous user creation at run time, a core element of VR since its inception. The package comes with several demo scenes for you to experiment with: an empty playground in which you can create objects in isolation and scenes that engage Dall-E and CLIP to find 3D models that are visually and textually similar to your prompt. 
 
