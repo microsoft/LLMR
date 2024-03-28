@@ -130,6 +130,7 @@ The `demo_use_app.py` file demonstrates how to use all three functionalities.
 
 - This project is still in early research stages. Please be expectant of errors when you play with the framework.
 - There is a slim chance that some required .dll files are not included in the **Assemblies** folder for your use case, which will give runtime errors like `The required namespace xxx cannot be found. Are you missing an assembly reference?`. Please reach out if this happens!
+- The implementation of the OpenAI API calls within Unity are based on the excellent repository https://github.com/RageAgainstThePixel/com.openai.unity
 
 ## Contributing
 
