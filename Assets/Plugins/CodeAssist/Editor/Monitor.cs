@@ -28,8 +28,14 @@ namespace Meryel.UnityCodeAssist.Editor
         static Monitor()
         {
             tagManagerFilePath = CommonTools.GetTagManagerFilePath();
-            previousTagManagerLastWrite = System.IO.File.GetLastWriteTime(tagManagerFilePath);
-
+            try
+            {
+                previousTagManagerLastWrite = System.IO.File.GetLastWriteTime(tagManagerFilePath);
+            }
+            catch (System.Exception ex)
+            {
+                Serilog.Log.Debug(ex, "Exception at {Location}", nameof(System.IO.File.GetLastWriteTime));
+            }
             dirtyDict = new Dictionary<GameObject, int>();
             dirtyCounter = 0;
 
@@ -64,7 +70,15 @@ namespace Meryel.UnityCodeAssist.Editor
             if (Selection.activeObject)
                 currentEditorFocus = Selection.activeObject.GetType().ToString();
 
-            var currentTagManagerLastWrite = System.IO.File.GetLastWriteTime(tagManagerFilePath);
+            var currentTagManagerLastWrite = previousTagManagerLastWrite;
+            try
+            {
+                currentTagManagerLastWrite = System.IO.File.GetLastWriteTime(tagManagerFilePath);
+            }
+            catch (System.Exception ex)
+            {
+                Serilog.Log.Debug(ex, "Exception at {Location}", nameof(System.IO.File.GetLastWriteTime));
+            }
             if (currentTagManagerLastWrite != previousTagManagerLastWrite)
             {
                 previousTagManagerLastWrite = currentTagManagerLastWrite;
@@ -170,7 +184,12 @@ namespace Meryel.UnityCodeAssist.Editor
             else if (obj is GameObject go && go)
                 SetDirty(go);
             else if (obj is Component component && component)
-                SetDirty(component.gameObject);
+            //SetDirty(component.gameObject);
+            {
+                var componentGo = component.gameObject;
+                if (componentGo)
+                    SetDirty(componentGo);
+            }
             //else
                 //;//**--scriptable obj
         }

@@ -34,7 +34,7 @@ Restrictions:
 
 How to Setup:
 * Import the asset under folder "Assets"
-* Install UnityCodeAssistVSIX.vsix under folder "Assets/Plugins/CodeAssist" (You can skip this step if you have installed it for another project)
+* Install Meryel.UnityCodeAssist.VSIX.vsix under folder "Assets/Plugins/CodeAssist" (You can skip this step if you have installed it for another project)
 * Open your Unity project with Visual Studio. Code Assist loads in background with low priority, so it will be ready in a minute when Visual Studio first starts up.
 * To check if setup is successfull, in Unity, choose "Tools"->"Code Assist"->"Status" from menu. The windows should display "Code Assist is working!".
 

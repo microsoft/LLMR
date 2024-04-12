@@ -119,7 +119,7 @@ public class IterPrompting : MonoBehaviour
     public async Task test()
     {
         Debug.Log("About to load api");
-        var auth = new OpenAIAuthentication("Your API key");
+        var auth = new OpenAIAuthentication("API KEY");
         var api = new OpenAIClient(auth);
         var models = await api.ModelsEndpoint.GetModelsAsync();
 
@@ -139,17 +139,5 @@ public class IterPrompting : MonoBehaviour
         ChatHistory.Add(new Message(Role.System, SystemContext.text));
     }
 
-    //public async Task completionTest()
-    //{
-
-    //    string prompt =  input.GetComponent<TextMeshPro>().text;
-
-    //    var auth = new OpenAIAuthentication("Your API key", "organization");
-    //    var api = new OpenAIClient(auth);
-    //    var result = await api.CompletionsEndpoint.CreateCompletionAsync("One Two Three One Two", temperature: 0.1, model: Model.Davinci);
-    //    Debug.Log(result);
-    //    Output.GetComponent<TextMeshPro>().text = result.ToString();
-    //    //History.text += "\n" + input.GetComponent<TextMeshPro>().text + "\n" + Output.GetComponent<TextMeshPro>().text;
-    //}
 
 }

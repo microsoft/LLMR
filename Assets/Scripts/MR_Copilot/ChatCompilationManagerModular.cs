@@ -437,7 +437,7 @@ public class ChatCompilationManagerModular : MonoBehaviour
         }
     }
 
-    void ClearRecordedErrorMessages()
+    public void ClearRecordedErrorMessages()
     {
         error_messages = new List<string>();
     }

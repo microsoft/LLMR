@@ -7,7 +7,7 @@
   "targets": {
     ".NETStandard,Version=v2.0": {},
     ".NETStandard,Version=v2.0/": {
-      "Meryel.UnityCodeAssist.SynchronizerModel/1.1.9": {
+      "Meryel.UnityCodeAssist.SynchronizerModel/1.1.11": {
         "dependencies": {
           "NETStandard.Library": "2.0.3"
         },
@@ -24,7 +24,7 @@
     }
   },
   "libraries": {
-    "Meryel.UnityCodeAssist.SynchronizerModel/1.1.9": {
+    "Meryel.UnityCodeAssist.SynchronizerModel/1.1.11": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
