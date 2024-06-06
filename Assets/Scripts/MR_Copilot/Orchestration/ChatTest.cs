@@ -218,17 +218,6 @@ public class ChatTest : MonoBehaviour
 
     }
 
-    public async Task completionTest()
-    {
-
-        string prompt =  input.GetComponent<TextMeshPro>().text;
-
-        var auth = new OpenAIAuthentication("API KEY", "organization");
-        var api = new OpenAIClient(auth);
-        var result = await api.CompletionsEndpoint.CreateCompletionAsync("One Two Three One Two", temperature: 0.1, model: Model.Davinci);
-        Debug.Log(result);
-        Output.GetComponent<TextMeshPro>().text = result.ToString();
-        //History.text += "\n" + input.GetComponent<TextMeshPro>().text + "\n" + Output.GetComponent<TextMeshPro>().text;
-    }
+    
 
 }

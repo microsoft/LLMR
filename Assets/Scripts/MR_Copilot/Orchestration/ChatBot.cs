@@ -139,12 +139,13 @@ public class ChatBot : MonoBehaviour
             try
             {
                 // wait for the response
-                await api.ChatEndpoint.StreamCompletionAsync(chatRequest, result =>
+                var response = await api.ChatEndpoint.StreamCompletionAsync(chatRequest, partialresult =>
                 {
-                    output += result.FirstChoice.ToString();
-                    fullResult += result.FirstChoice.ToString();
-                    history += result.FirstChoice.ToString();
+                    //Debug.Log("Output of chatbot is: "+partialresult);
                 });
+                output += response.FirstChoice.Message;
+                fullResult += output;
+                history += output;
 
                 ChatHistory.Add(new Message(Role.Assistant, fullResult));
                 history += "\n\n";

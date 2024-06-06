@@ -130,17 +130,5 @@ public class ChatRelationalGPT : MonoBehaviour
 
     }
 
-    public async Task completionTest()
-    {
-
-        string prompt = Input.GetComponent<TextMeshPro>().text;
-
-        var auth = new OpenAIAuthentication("API KEY", "organization");
-        var api = new OpenAIClient(auth);
-        var result = await api.CompletionsEndpoint.CreateCompletionAsync("One Two Three One Two", temperature: 0.1, model: Model.Davinci);
-        Debug.Log(result);
-        Output.GetComponent<TextMeshPro>().text = result.ToString();
-        //History.text += "\n" + Input.GetComponent<TextMeshPro>().text + "\n" + Output.GetComponent<TextMeshPro>().text;
-    }
-
+    
 }
