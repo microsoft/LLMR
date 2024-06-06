@@ -4,4 +4,4 @@ openai==0.27.8
 torch
 torchvision
 openai-clip
-Werkzeug==2.2.2
+Werkzeug==3.0.3
