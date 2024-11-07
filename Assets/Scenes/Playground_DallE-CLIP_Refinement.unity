@@ -6431,8 +6431,8 @@ MonoBehaviour:
   use_DALLE_CLIP_refinement: 1
   save_models_to_nontemp_folder: 1
   finder: {fileID: 1387878456}
-  username: abanburski@gmail.com
-  password: SketchyPass666
+  username: abc
+  password: abc
   baseUrl: https://api.sketchfab.com/v3/models?
   maximumPageLimit: 1
   searchResults: []
