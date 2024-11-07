@@ -227,8 +227,8 @@
 //    }
 
 //    //private GameObject spawnedModel;
-//    public string username = "abanburski@microsoft.com";
-//    public string password = "kalamazoo1!";
+//    public string username = "example_account";
+//    public string password = "example_Password";
 //    public string baseUrl = "https://api.sketchfab.com/v3/models?";
 //    //public string keywordToSearch;
 //    public int maximumPageLimit = 1;
@@ -240,8 +240,8 @@
 //    private string _nextUrl;
 //    private int currentPageNumber;
 //    private bool shouldLoadNextPage;
-//    private string clientId = "sDvwSIxKARJ6m6PZSLLYhmT60ha1rzDYO6J6RUnx";
-//    private string clientSecret = "7wbty2FT0fx7S90h9QeGMbzsGvyIHhoQPwd2I0qJYYYVirB4X82ORQk9l4pFOH0783tg9SHiOSOGtVKCIMB9vVcjnu01HFtc15XnJoXcEViF5tZJO87Ub5TMuNbcIeHw";
+//    private string clientId = "...";
+//    private string clientSecret = "...";
 //    [SerializeField] private ImplicitAccessToken IAT;
 
 //    private bool oneAtATime = false;
