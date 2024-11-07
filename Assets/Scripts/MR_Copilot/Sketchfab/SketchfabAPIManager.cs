@@ -228,8 +228,8 @@
 //    }
 
 //    private GameObject spawnedModel;
-//    [Header("Mandatory -- Sketchfab Username")] public string username = "t-abanburski@microsoft.com";
-//    [Header("Mandatory -- Sketchfab Password")] public string password = "kalamazoo1!";
+//    [Header("Mandatory -- Sketchfab Username")] public string username = "...";
+//    [Header("Mandatory -- Sketchfab Password")] public string password = "...";
 //    [Space]public string baseUrl;
 //    public string keywordToSearch;
 //    public int maximumPageLimit = 1;
@@ -242,8 +242,8 @@
 //    private string _nextUrl;
 //    private int currentPageNumber;
 //    private bool shouldLoadNextPage;
-//    private string clientId = "sDvwSIxKARJ6m6PZSLLYhmT60ha1rzDYO6J6RUnx";
-//    private string clientSecret = "7wbty2FT0fx7S90h9QeGMbzsGvyIHhoQPwd2I0qJYYYVirB4X82ORQk9l4pFOH0783tg9SHiOSOGtVKCIMB9vVcjnu01HFtc15XnJoXcEViF5tZJO87Ub5TMuNbcIeHw";
+//    private string clientId = "...";
+//    private string clientSecret = "...";
 //    [SerializeField] private ImplicitAccessToken IAT;
 
 //    private void Start()
