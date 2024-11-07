@@ -52,7 +52,7 @@
 //    private string keywordToSearch;
 //    private GameObject spawnedModel;
 //    public string baseSearchUrl = "https://api.poly.pizza/v1/search/";
-//    private string API_KEY = "e1718e5af93447c68f417cbe4922773a";
+//    private string API_KEY = "...";
 //    public SearchResults searchResults;
 //    public Button searchBtn;
 //    public TMP_InputField inputField;
