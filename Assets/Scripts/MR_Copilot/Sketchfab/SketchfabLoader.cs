@@ -221,8 +221,8 @@ public class SketchfabLoader : MonoBehaviour
     public bool use_DALLE_CLIP_refinement;
     public bool save_models_to_nontemp_folder;
     public Find3DModelsSingle finder;
-    public string username = "abanburski@gmail.com";
-    public string password = "SketchyPass666";
+    public string username = "...";
+    public string password = "...";
     public string baseUrl = "https://api.sketchfab.com/v3/models?";
     public int maximumPageLimit = 1;
     public List<SFSearchResults> searchResults;
@@ -233,8 +233,8 @@ public class SketchfabLoader : MonoBehaviour
     private string _nextUrl;
     private int currentPageNumber;
     private bool shouldLoadNextPage;
-    private string clientId = "sDvwSIxKARJ6m6PZSLLYhmT60ha1rzDYO6J6RUnx";
-    private string clientSecret = "7wbty2FT0fx7S90h9QeGMbzsGvyIHhoQPwd2I0qJYYYVirB4X82ORQk9l4pFOH0783tg9SHiOSOGtVKCIMB9vVcjnu01HFtc15XnJoXcEViF5tZJO87Ub5TMuNbcIeHw";
+    private string clientId = "...";
+    private string clientSecret = "...";
     [SerializeField] private ImplicitAccessToken IAT;
 
     
